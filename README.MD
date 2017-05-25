@@ -16,14 +16,28 @@ and it has built in `BluetoothDevices` list
 This library can use in many different applications like ,IOT ,RC car, Prostheses
 ...etc the ideas and options are endless make now your own idea  true
 
+## Download
+
+Gradle
+
+```
+compile 'com.ahmedabdelmeged:bluetoothmc:1.0.0'
+```
+
+Add this to `build.gradle` project in like this
+
+```gradle
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url  "http://clothin.bintray.com/Ahmed-Abdelmeged"
+        }
+    }
+}
+```
 
 ## Getting started
-* Download the `bluetoothmc` module from the repository      
-1- in `settings.gradle` add the module like this
-`include ':app',':bluetoothmc'`
-
-    2- in the `build.gradle(Module:app)` add this line in the dependencies block   
-  `compile project (':bluetoothmc')`
 
  * Declare BluetoothMC like this      
 ```java
