@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //set listener for listen for the incoming data from the micro controller
+        //set listener for listen for the incoming data from the microcontroller
         bluetoothMC.setOnDataReceivedListener(new BluetoothMC.onDataReceivedListener() {
             @Override
             public void onDataReceived(String data) {
