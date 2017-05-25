@@ -29,7 +29,7 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
 `BluetoothMC bluetoothmc = new BluetoothMC(Context)`
 
 * Check if the bluetooth is now available          
-```
+```java
 //check if the bluetooth is now available
      if (!bluetoothMC.isBluetoothAvailable()) {
         //do any action if the bluetooth is not available
@@ -37,20 +37,20 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
 ```     
 
 * Check if the bluetooth is not enabled and you can enable it
-```    
+```java    
      //check if the bluetooth enable or not and enable it if not
      else if (!bluetoothMC.isBluetoothEnabled()) {
          bluetoothMC.enableBluetooth();
      }
 ```     
 * If the bluetooth available and enabled now start the BluetoothDevices and connect
-```
+```java
 Intent intent = new Intent(MainActivity.this, BluetoothDevices.class);
 startActivityForResult(intent, BluetoothStates.REQUEST_CONNECT_DEVICE);
 ```
 In `onActivityResult` connect to the bluetooth device you choose
 
-```
+```java
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == BluetoothStates.REQUEST_CONNECT_DEVICE) {
@@ -63,7 +63,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 * You can set the listener to keep track the connection process and show a dialog ,  toast or what ever you want check the sample app for more details
 
-```
+```java
 //set listener to keep track for the connection states
     bluetoothMC.setOnBluetoothConnectionListener(new BluetoothMC.BluetoothConnectionListener() {
         @Override
@@ -92,7 +92,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 to send data you the method `send()` like this  `bluetoothMC.send("o");`
 
 * For receiving data first set a data listener like this
-```
+```java
 //set listener for listen for the incoming data from the microcontroller
 bluetoothMC.setOnDataReceivedListener(new BluetoothMC.onDataReceivedListener() {
     @Override
@@ -106,19 +106,20 @@ to be the data formatted in this way eg. we have two sensors the data will be in
 
 
 And then in Declare a InputDataHelper as Global  like this  
-```                          
+```java                          
 InputDataHelper inputDataHelper = new InputDataHelper()
 ```
 
 Now in the `onDataReceived()` call the `setSensorsValues` like this
-```
+
+```java
 sensors = inputDataHelper.setSensorsValues(data);
 ```
 Which Sensor is an `ArrayList<String>` and know you extract the reads from the
 readings from the  `ArrayList` and parse it as you want
 
 * You can set listener to keep track of the errors after the connection like this
-```
+```java
 //set listener to keep track the communication errors
 bluetoothMC.setOnBluetoothErrorsListener(new BluetoothMC.BluetoothErrorsListener() {
     @Override
