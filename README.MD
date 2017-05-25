@@ -26,11 +26,13 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
   `compile project (':bluetoothmc')`
 
  * Declare BluetoothMC like this      
-`BluetoothMC bluetoothmc = new BluetoothMC(Context)`
+```java
+BluetoothMC bluetoothmc = new BluetoothMC(Context)
+```
 
 * Check if the bluetooth is now available          
 ```java
-//check if the bluetooth is now available
+     //check if the bluetooth is now available
      if (!bluetoothMC.isBluetoothAvailable()) {
         //do any action if the bluetooth is not available
      }
@@ -64,7 +66,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 * You can set the listener to keep track the connection process and show a dialog ,  toast or what ever you want check the sample app for more details
 
 ```java
-//set listener to keep track for the connection states
+    //set listener to keep track for the connection states
     bluetoothMC.setOnBluetoothConnectionListener(new BluetoothMC.BluetoothConnectionListener() {
         @Override
         public void onDeviceConnecting() {
@@ -89,7 +91,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ```
 * Now you are to use the send and receive functionality :D
-to send data you the method `send()` like this  `bluetoothMC.send("o");`
+to send data you the method `send()` like this
+```java
+ bluetoothMC.send("o");
+```
 
 * For receiving data first set a data listener like this
 ```java
@@ -146,11 +151,15 @@ bluetoothMC.setOnBluetoothErrorsListener(new BluetoothMC.BluetoothErrorsListener
 ```
 
 * You can also get the current adapter if you want to add some custom functionality
-like this `        BluetoothAdapter bluetoothAdapter = bluetoothMC.getBluetoothAdapter();
-`
+like this
+```java       
+ BluetoothAdapter bluetoothAdapter = bluetoothMC.getBluetoothAdapter();
+```
 
 * After you finish your use it's a good practice to disconnect from the current connection just call
-`bluetoothMC.disconnect();`
+```java
+bluetoothMC.disconnect();
+```
 
 * Don't Forget to handle the activity **life cycle** for your app
 it's a better practice to lock the screen Orientation and keep it in one mode in the `manifest` like this `android:screenOrientation="portrait"` or the landscape mode
