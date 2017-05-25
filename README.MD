@@ -16,15 +16,16 @@ and it has built in `BluetoothDevices` list
 This library can use in many different applications like ,IOT ,RC car, Prostheses
 ...etc the ideas and options are endless make now your own idea  true
 
+
 ## Getting started
 * Download the `bluetoothmc` module from the repository      
 1- in `settings.gradle` add the module like this
 `include ':app',':bluetoothmc'`
 
-  2- in the `build.gradle(Module:app)` add this line in the dependencies block   
+    2- in the `build.gradle(Module:app)` add this line in the dependencies block   
   `compile project (':bluetoothmc')`
 
-* Declare BluetoothMC like this      
+ * Declare BluetoothMC like this      
 `BluetoothMC bluetoothmc = new BluetoothMC(Context)`
 
 * Check if the bluetooth is now available          
@@ -33,21 +34,22 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
      if (!bluetoothMC.isBluetoothAvailable()) {
         //do any action if the bluetooth is not available
      }
-     ```
+```     
+
 * Check if the bluetooth is not enabled and you can enable it
-     ```
+```    
      //check if the bluetooth enable or not and enable it if not
      else if (!bluetoothMC.isBluetoothEnabled()) {
          bluetoothMC.enableBluetooth();
      }
-     ```
-
+```     
 * If the bluetooth available and enabled now start the BluetoothDevices and connect
 ```
 Intent intent = new Intent(MainActivity.this, BluetoothDevices.class);
 startActivityForResult(intent, BluetoothStates.REQUEST_CONNECT_DEVICE);
 ```
 In `onActivityResult` connect to the bluetooth device you choose
+
 ```
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -86,7 +88,6 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     });
 
 ```
-
 * Now you are to use the send and receive functionality :D
 to send data you the method `send()` like this  `bluetoothMC.send("o");`
 
@@ -102,6 +103,7 @@ bluetoothMC.setOnDataReceivedListener(new BluetoothMC.onDataReceivedListener() {
 
 And you have to options for the incoming data you can receive it as string and formmat it as you want or you can use the `InputDataHelper` class . to use this method you **Must** send data in special way from the microcontroller as shown in the example  [Arduino-BluetoothMC.ino](https://github.com/Ahmed-Abdelmeged/Android-BluetoothMCLibrary/blob/master/Arduino-BluetoothMC/Arduino-BluetoothMC.ino)
 to be the data formatted in this way eg. we have two sensors the data will be in this way `#sensor1Value+sensors2Value+~`
+
 
 And then in Declare a InputDataHelper as Global  like this  
 ```                          
@@ -149,12 +151,12 @@ like this `        BluetoothAdapter bluetoothAdapter = bluetoothMC.getBluetoothA
 * After you finish your use it's a good practice to disconnect from the current connection just call
 `bluetoothMC.disconnect();`
 
-* **Don't Forget to handle the activity life cycle for your app **
+* Don't Forget to handle the activity **life cycle** for your app
 it's a better practice to lock the screen Orientation and keep it in one mode in the `manifest` like this `android:screenOrientation="portrait"` or the landscape mode
 
 ## Tutorial
 This a video in arabic to help you use the library also
-** SOON**
+**SOON**
 
 ## Microcontroller
 I use **Arduino** as simple example for test the code but it work for the other microcontrollers and this the Arduino code [Arduino-BluetoothMC.ino](https://github.com/Ahmed-Abdelmeged/Android-BluetoothMCLibrary/blob/master/Arduino-BluetoothMC/Arduino-BluetoothMC.ino)
