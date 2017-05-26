@@ -21,10 +21,10 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
 Gradle
 
 ```
-compile 'com.ahmedabdelmeged:bluetoothmc:1.0.0'
+compile 'com.ahmedabdelmeged:bluetoothmc:1.0.1'
 ```
 
-Add this to `build.gradle` project in like this
+Add this to `build.gradle` project  like this
 
 ```gradle
 allprojects {
