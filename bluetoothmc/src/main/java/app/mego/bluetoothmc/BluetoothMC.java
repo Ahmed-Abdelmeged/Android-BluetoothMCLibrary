@@ -358,7 +358,7 @@ public class BluetoothMC {
      * @param data the data that will send prefer to be one char
      */
     public void send(String data) {
-        if (btSocket != null) {
+        if (btSocket != null && mConnectedThread != null){
             mConnectedThread.write(data);
         }
     }
