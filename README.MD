@@ -179,8 +179,7 @@ bluetoothMC.disconnect();
 it's a better practice to lock the screen Orientation and keep it in one mode in the `manifest` like this `android:screenOrientation="portrait"` or the landscape mode
 
 ## Tutorial
-This a video in arabic to help you use the library also
-**SOON**
+This a video in arabic to help you use the library [Here](https://youtu.be/BCOO0Jx8h5I)
 
 ## Microcontroller
 I use **Arduino** as simple example for test the code but it work for the other microcontrollers and this the Arduino code [Arduino-BluetoothMC.ino](https://github.com/Ahmed-Abdelmeged/Android-BluetoothMCLibrary/blob/master/Arduino-BluetoothMC/Arduino-BluetoothMC.ino)
