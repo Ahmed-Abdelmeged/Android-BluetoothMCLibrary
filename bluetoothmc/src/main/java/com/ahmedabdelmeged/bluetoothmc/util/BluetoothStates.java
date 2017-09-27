@@ -4,6 +4,7 @@
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
  * Facebook: https://www.facebook.com/ven.rto
+ * Twitter: https://twitter.com/A_K_Abd_Elmeged
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,31 +19,31 @@
  * limitations under the License.
  */
 
-package app.mego.bluetoothmc;
+package com.ahmedabdelmeged.bluetoothmc.util;
 
 
-public class BluetoothStates {
+public final class BluetoothStates {
 
     //Intent request code
     public static final int REQUEST_CONNECT_DEVICE = 2653;
     public static final int REQUEST_ENABLE_BT = 3569;
 
     //Messages type send to the bluetooth handler
-    static final int BLUETOOTH_CONNECTING = 20;
-    static final int BLUETOOTH_CONNECTED = 21;
-    static final int BLUETOOTH_CONNECTION_FAILED = 22;
-    static final int BLUETOOTH_CONNECTION_LOST = 23;
-    static final int BLUETOOTH_LISTENING = 101;
+    public static final int BLUETOOTH_CONNECTING = 20;
+    public static final int BLUETOOTH_CONNECTED = 21;
+    public static final int BLUETOOTH_CONNECTION_FAILED = 22;
+    public static final int BLUETOOTH_CONNECTION_LOST = 23;
+    public static final int BLUETOOTH_LISTENING = 101;
 
     //Messages errors send to the bluetooth handler
-    static final int ERROR_SEND = 600;
-    static final int ERROR_LISTEN = 601;
-    static final int ERROR_DISCONNECT = 602;
-    static final int ERROR_COMMUNICATION = 603;
+    public static final int ERROR_SEND = 600;
+    public static final int ERROR_LISTEN = 601;
+    public static final int ERROR_DISCONNECT = 602;
+    public static final int ERROR_COMMUNICATION = 603;
 
     /**
      * Return Intent extra (The device MAC address)
      */
-     static String EXTRA_DEVICE_ADDRESS = "device_address";
+    public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
 }

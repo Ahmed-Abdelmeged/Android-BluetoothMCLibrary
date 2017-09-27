@@ -4,6 +4,7 @@
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
  * Facebook: https://www.facebook.com/ven.rto
+ * Twitter: https://twitter.com/A_K_Abd_Elmeged
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +19,13 @@
  * limitations under the License.
  */
 
-package app.mego.bluetoothmc;
+package com.ahmedabdelmeged.bluetoothmc.util;
 
 
 import java.util.ArrayList;
 
 
-public class InputDataHelper {
+public final class InputDataHelper {
 
     private ArrayList<String> sensorsValues;
     private StringBuilder readDataString;
@@ -39,7 +40,7 @@ public class InputDataHelper {
      * Required public constructor
      */
     public InputDataHelper() {
-        sensorsValues = new ArrayList<String>();
+        sensorsValues = new ArrayList<>();
         readDataString = new StringBuilder();
     }
 

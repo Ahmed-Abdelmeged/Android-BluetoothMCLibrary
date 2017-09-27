@@ -4,47 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee"
-    tools:context="app.mego.bluetoothmc.BluetoothDevices">
+    android:background="#eeeeee">
 
-    <android.support.v7.widget.Toolbar
+    <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:padding="16dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_devices"
-            android:textAppearance="@android:style/TextAppearance.Medium"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="16dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <ProgressBar
-            android:id="@+id/search_progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:visibility="gone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_devices"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
-    </android.support.v7.widget.Toolbar>
+            <ProgressBar
+                android:id="@+id/search_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:visibility="gone" />
 
+        </android.support.v7.widget.Toolbar>
 
-    <ListView
-        android:id="@+id/devices_list_listView"
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/devices_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="12dp"
-        android:padding="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
         tools:listitem="@layout/item_device" />
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/search_fab_button"
@@ -58,6 +61,5 @@
         android:layout_marginRight="20dp"
         android:src="@drawable/magnify"
         app:fabSize="auto" />
-
 
 </RelativeLayout>

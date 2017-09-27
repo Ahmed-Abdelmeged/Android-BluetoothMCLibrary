@@ -4,6 +4,7 @@
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
  * Facebook: https://www.facebook.com/ven.rto
+ * Twitter: https://twitter.com/A_K_Abd_Elmeged
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package app.mego.bluetoothmc;
+package com.ahmedabdelmeged.bluetoothmc;
 
 
 import android.bluetooth.BluetoothAdapter;
@@ -29,13 +29,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 
+import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-public class BluetoothMC {
 
+public class BluetoothMC {
 
     /**
      * the MAC address for the chosen device
@@ -358,7 +360,7 @@ public class BluetoothMC {
      * @param data the data that will send prefer to be one char
      */
     public void send(String data) {
-        if (btSocket != null && mConnectedThread != null){
+        if (btSocket != null && mConnectedThread != null) {
             mConnectedThread.write(data);
         }
     }

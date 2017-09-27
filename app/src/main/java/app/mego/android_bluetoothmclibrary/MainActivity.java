@@ -38,8 +38,8 @@ import java.util.ArrayList;
 
 import app.mego.bluetoothmc.BluetoothDevices;
 import app.mego.bluetoothmc.BluetoothMC;
-import app.mego.bluetoothmc.BluetoothStates;
-import app.mego.bluetoothmc.InputDataHelper;
+import app.mego.bluetoothmc.util.BluetoothStates;
+import app.mego.bluetoothmc.util.InputDataHelper;
 
 public class MainActivity extends AppCompatActivity {
 

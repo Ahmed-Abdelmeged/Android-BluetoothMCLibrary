@@ -4,6 +4,7 @@
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
  * Facebook: https://www.facebook.com/ven.rto
+ * Twitter: https://twitter.com/A_K_Abd_Elmeged
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +19,7 @@
  * limitations under the License.
  */
 
-package app.mego.bluetoothmc;
+package com.ahmedabdelmeged.bluetoothmc.ui;
 
 import android.Manifest;
 import android.app.Activity;
@@ -34,16 +35,22 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.ahmedabdelmeged.bluetoothmc.R;
+import com.ahmedabdelmeged.bluetoothmc.ui.adapter.BluetoothDevicesAdapter;
+import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates;
 
 import java.util.ArrayList;
 import java.util.Set;
 
-import static app.mego.bluetoothmc.BluetoothStates.REQUEST_ENABLE_BT;
+
+import static com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates.REQUEST_ENABLE_BT;
+
 
 /**
  * This Activity to connect the app with the device(MicroController)
@@ -56,7 +63,7 @@ public class BluetoothDevices extends AppCompatActivity {
      * UI Element
      */
     private FloatingActionButton searchForNewDevices;
-    private ListView DevicesList;
+    private RecyclerView deviceRecycler;
     private ProgressBar searchProgressbar;
 
     /**
@@ -99,7 +106,7 @@ public class BluetoothDevices extends AppCompatActivity {
             finish();
         } else if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntentBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntentBluetooth, BluetoothStates.REQUEST_ENABLE_BT);
+            startActivityForResult(enableIntentBluetooth, REQUEST_ENABLE_BT);
         } else if (mBluetoothAdapter.isEnabled()) {
             PairedDevicesList();
         }
@@ -153,9 +160,9 @@ public class BluetoothDevices extends AppCompatActivity {
      * Link the layout element from XML to Java
      */
     private void initializeScreen() {
-        searchForNewDevices = (FloatingActionButton) findViewById(R.id.search_fab_button);
-        DevicesList = (ListView) findViewById(R.id.devices_list_listView);
-        searchProgressbar = (ProgressBar) findViewById(R.id.search_progress_bar);
+        searchForNewDevices = findViewById(R.id.search_fab_button);
+        deviceRecycler = findViewById(R.id.devices_recycler);
+        searchProgressbar = findViewById(R.id.search_progress_bar);
     }
 
     /**
@@ -207,12 +214,11 @@ public class BluetoothDevices extends AppCompatActivity {
                     }
                 }
 
-            }
-            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+            } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 searchForNewDevices.setEnabled(true);
                 searchProgressbar.setVisibility(View.GONE);
-                if(pairedDevices.size() == bluetoothDevicesAdapter.getCount()){
-                    Toast.makeText(BluetoothDevices.this,"No devices found",Toast.LENGTH_SHORT).show();
+                if (pairedDevices.size() == bluetoothDevicesAdapter.getCount()) {
+                    Toast.makeText(BluetoothDevices.this, "No devices found", Toast.LENGTH_SHORT).show();
                 }
             }
         }

@@ -1,4 +1,4 @@
-package app.mego.bluetoothmc;
+package com.ahmedabdelmeged.bluetoothmc;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
