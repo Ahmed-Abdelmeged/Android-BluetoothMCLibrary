@@ -35,6 +35,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,6 +44,7 @@ import android.widget.Toast;
 
 import com.ahmedabdelmeged.bluetoothmc.R;
 import com.ahmedabdelmeged.bluetoothmc.ui.adapter.BluetoothDevicesAdapter;
+import com.ahmedabdelmeged.bluetoothmc.ui.adapter.DeviceClickCallbacks;
 import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates;
 
 import java.util.ArrayList;
@@ -57,7 +59,7 @@ import static com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates.REQUEST_ENABL
  * if it's a already paired devices using MAC address(Media Access Control)
  * then send the MAC address to the parent Activity as a intent result
  */
-public class BluetoothDevices extends AppCompatActivity {
+public class BluetoothDevices extends AppCompatActivity implements DeviceClickCallbacks {
 
     /**
      * UI Element
@@ -87,8 +89,6 @@ public class BluetoothDevices extends AppCompatActivity {
      * Adapter for the devices list
      */
     private BluetoothDevicesAdapter bluetoothDevicesAdapter;
-    private ArrayList<String> bluetoothDevicesNamesList = new ArrayList<String>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +99,14 @@ public class BluetoothDevices extends AppCompatActivity {
         //check if the device has a bluetooth or not
         //and show Toast message if it does't have
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        bluetoothDevicesAdapter = new BluetoothDevicesAdapter(this, bluetoothDevicesNamesList);
+
+        //set the bluetooth adapter
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                this, LinearLayoutManager.VERTICAL, false);
+        deviceRecycler.setLayoutManager(linearLayoutManager);
+        deviceRecycler.setHasFixedSize(true);
+        bluetoothDevicesAdapter = new BluetoothDevicesAdapter(new ArrayList<String>(), this);
+        deviceRecycler.setAdapter(bluetoothDevicesAdapter);
 
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, R.string.does_not_have_bluetooth, Toast.LENGTH_LONG).show();
@@ -210,14 +217,14 @@ public class BluetoothDevices extends AppCompatActivity {
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
 
                     if (device.getName() != null) {
-                        bluetoothDevicesAdapter.add(device.getName() + "\n" + device.getAddress());
+                        bluetoothDevicesAdapter.addDevice(device.getName() + "\n" + device.getAddress());
                     }
                 }
 
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 searchForNewDevices.setEnabled(true);
                 searchProgressbar.setVisibility(View.GONE);
-                if (pairedDevices.size() == bluetoothDevicesAdapter.getCount()) {
+                if (pairedDevices.size() == bluetoothDevicesAdapter.getItemCount()) {
                     Toast.makeText(BluetoothDevices.this, "No devices found", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -233,15 +240,12 @@ public class BluetoothDevices extends AppCompatActivity {
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice bt : pairedDevices) {
                 //Get the device's name and the address
-                bluetoothDevicesAdapter.add(bt.getName() + "\n" + bt.getAddress());
+                bluetoothDevicesAdapter.addDevice(bt.getName() + "\n" + bt.getAddress());
             }
         } else {
             Toast.makeText(getApplicationContext(), R.string.no_paired_devices,
                     Toast.LENGTH_LONG).show();
         }
-
-        DevicesList.setAdapter(bluetoothDevicesAdapter);
-        DevicesList.setOnItemClickListener(bluetoothListClickListener);
     }
 
     /**
@@ -276,5 +280,22 @@ public class BluetoothDevices extends AppCompatActivity {
 
         // Unregister broadcast listeners
         unregisterReceiver(mReceiver);
+    }
+
+    /**
+     * handle the click for the recycler view to get the MAC address
+     */
+    @Override
+    public void onDeviceClick(String deviceName) {
+        //Get the device MAC address , the last 17 char in the view
+        String MACAddress = deviceName.substring(deviceName.length() - 17);
+
+        // Create the result Intent and include the MAC address
+        Intent intent = new Intent();
+        intent.putExtra(BluetoothStates.EXTRA_DEVICE_ADDRESS, MACAddress);
+
+        // Set result and finish this Activity
+        setResult(Activity.RESULT_OK, intent);
+        finish();
     }
 }

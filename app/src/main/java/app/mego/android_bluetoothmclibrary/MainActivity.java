@@ -4,6 +4,7 @@
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
  * Facebook: https://www.facebook.com/ven.rto
+ * Twitter: https://twitter.com/A_K_Abd_Elmeged
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,12 +35,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ahmedabdelmeged.bluetoothmc.BluetoothMC;
+import com.ahmedabdelmeged.bluetoothmc.ui.BluetoothDevices;
+import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates;
+import com.ahmedabdelmeged.bluetoothmc.util.InputDataHelper;
+
 import java.util.ArrayList;
 
-import app.mego.bluetoothmc.BluetoothDevices;
-import app.mego.bluetoothmc.BluetoothMC;
-import app.mego.bluetoothmc.util.BluetoothStates;
-import app.mego.bluetoothmc.util.InputDataHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         initializeScreen();
 
         // initialize the bluetoothmc and the data helper
-        bluetoothMC = new BluetoothMC(this);
+        bluetoothMC = new BluetoothMC();
         inputDataHelper = new InputDataHelper();
 
         //check if the mobile have a bluetooth
@@ -213,15 +215,15 @@ public class MainActivity extends AppCompatActivity {
      * Link the layout element from XML to Java
      */
     private void initializeScreen() {
-        potTextView = (TextView) findViewById(R.id.sensor_pot);
-        ldrTextView = (TextView) findViewById(R.id.sensor_ldr);
-        buttonTextView = (TextView) findViewById(R.id.sensor_button);
-        tempTextView = (TextView) findViewById(R.id.sensor_temp);
+        potTextView = findViewById(R.id.sensor_pot);
+        ldrTextView = findViewById(R.id.sensor_ldr);
+        buttonTextView = findViewById(R.id.sensor_button);
+        tempTextView = findViewById(R.id.sensor_temp);
 
-        fabConnect = (FloatingActionButton) findViewById(R.id.fab_connect);
+        fabConnect = findViewById(R.id.fab_connect);
 
-        onButton = (Button) findViewById(R.id.on_button);
-        offButton = (Button) findViewById(R.id.off_button);
+        onButton = findViewById(R.id.on_button);
+        offButton = findViewById(R.id.off_button);
     }
 
     /**

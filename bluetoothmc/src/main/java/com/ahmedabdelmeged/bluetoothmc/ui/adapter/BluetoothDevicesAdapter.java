@@ -88,4 +88,14 @@ public class BluetoothDevicesAdapter extends RecyclerView.Adapter<BluetoothDevic
         }
     }
 
+    public void clear() {
+        this.devices.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addDevice(String device) {
+        this.devices.add(device);
+        notifyDataSetChanged();
+    }
+
 }

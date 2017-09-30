@@ -18,13 +18,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.ahmedabdelmeged.bluetoothmc;
 
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -59,26 +59,22 @@ public class BluetoothMC {
     private int newConnectionFlag = 0;
 
     private static ConnectedThread mConnectedThread;
-    private Context mContext;
-
 
     /**
      * Handler to get the DataSend from thr thread and drive it to the UI
      */
     private static Handler bluetoothHandler;
 
-
     private onDataReceivedListener mOnDataReceivedListener;
     private BluetoothConnectionListener mBluetoothConnectionListener;
     private BluetoothErrorsListener mBluetoothErrorsListener;
 
-
     /**
      * Required public constructor
      */
-    public BluetoothMC(Context context) {
+    public BluetoothMC() {
         newConnectionFlag++;
-        mContext = context;
+
         //get the mobile bluetooth device
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         HandleBluetoothStates();
@@ -223,7 +219,6 @@ public class BluetoothMC {
             }
         };
     }
-
 
     /**
      * An AysncTask to connect to Bluetooth socket
