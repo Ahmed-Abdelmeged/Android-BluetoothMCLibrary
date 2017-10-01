@@ -21,27 +21,14 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
 Gradle
 
 ```
-compile 'com.ahmedabdelmeged:bluetoothmc:1.0.1'
-```
-
-Add this to `build.gradle` project  like this
-
-```gradle
-allprojects {
-    repositories {
-        jcenter()
-        maven {
-            url  "http://clothin.bintray.com/Ahmed-Abdelmeged"
-        }
-    }
-}
+compile 'com.ahmedabdelmeged:bluetoothmc:1.0.2'
 ```
 
 ## Getting started
 
  * Declare BluetoothMC like this      
 ```java
-BluetoothMC bluetoothmc = new BluetoothMC(Context)
+BluetoothMC bluetoothmc = new BluetoothMC()
 ```
 
 * Check if the bluetooth is now available          
@@ -186,7 +173,6 @@ I use **Arduino** as simple example for test the code but it work for the other 
 
 ## What's next?
 
-* Add the library to `mavenCentral()` and `jcenter()`
 * Add more customization to the `BluetoothDevice` activity
 * Add auto connect future
 * Support for secure and insecure connection
@@ -196,7 +182,7 @@ I use **Arduino** as simple example for test the code but it work for the other 
 You can use the sample app to help you get started
 * BluetoothDevices activity
 
-![BluetoothDevices](http://imgur.com/SN7DG21.png)
+![BluetoothDevices](https://i.imgur.com/LopLwXX.png?1)
 
 * MainActivity
 
