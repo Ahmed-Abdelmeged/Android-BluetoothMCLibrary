@@ -21,9 +21,12 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
 Gradle
 
 ```
-compile 'com.ahmedabdelmeged:bluetoothmc:1.0.2'
+implementation 'com.ahmedabdelmeged:bluetoothmc:1.0.2'
 ```
-
+also make sure to downgrade appcompat Gradle dependency 
+```
+implementation 'com.android.support:appcompat-v7:27.0.2'
+```
 ## Getting started
 
  * Declare BluetoothMC like this      
