@@ -25,7 +25,9 @@ api 'com.ahmedabdelmeged:bluetoothmc:1.0.2'
 ```
 also make sure to downgrade appcompat Gradle dependency
 ```
-implementation 'com.android.support:appcompat-v7:27.0.2'
+implementation 'com.android.support:appcompat-v7:26.1.0'
+compileSdkVersion 26
+targetSdkVersion 26
 ```
 ## Getting started
 
