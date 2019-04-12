@@ -21,9 +21,9 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
 Gradle
 
 ```
-implementation 'com.ahmedabdelmeged:bluetoothmc:1.0.2'
+api 'com.ahmedabdelmeged:bluetoothmc:1.0.2'
 ```
-also make sure to downgrade appcompat Gradle dependency 
+also make sure to downgrade appcompat Gradle dependency
 ```
 implementation 'com.android.support:appcompat-v7:27.0.2'
 ```
