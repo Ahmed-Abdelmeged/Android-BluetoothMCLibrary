@@ -101,7 +101,7 @@ public class BluetoothDevices extends AppCompatActivity implements DeviceClickCa
 
         //set the bluetooth adapter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
-                this, LinearLayoutManager.VERTICAL, false);
+                this, RecyclerView.VERTICAL, false);
         deviceRecycler.setLayoutManager(linearLayoutManager);
         deviceRecycler.setHasFixedSize(true);
         bluetoothDevicesAdapter = new BluetoothDevicesAdapter(new ArrayList<String>(), this);

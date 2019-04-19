@@ -1,10 +1,17 @@
 apply plugin: 'com.android.library'
 
-ext {
-    PUBLISH_GROUP_ID = 'com.ahmedabdelmeged'
-    PUBLISH_ARTIFACT_ID = 'bluetoothmc'
-    PUBLISH_VERSION = '1.1.0'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = ''
+    repoName = 'BluetoothMC'
+    groupId = 'com.ahmedabdelmeged'
+    artifactId = 'bluetoothmc'
+    publishVersion = '1.1.0'
+    desc = ''
+    website = 'https://github.com/Ahmed-Abdelmeged/Android-BluetoothMCLibrary'
 }
+
 
 android {
     compileSdkVersion 28
@@ -33,5 +40,3 @@ dependencies {
 
     androidTestImplementation "androidx.test.espresso:espresso-core:3.1.1"
 }
-
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
