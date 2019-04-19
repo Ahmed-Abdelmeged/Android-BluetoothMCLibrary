@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Ahmed-Abdelmeged
+ * Copyright (c) 2019 Ahmed-Abdelmeged
  *
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
@@ -19,10 +19,10 @@
  * limitations under the License.
  */
 
-
 package com.ahmedabdelmeged.bluetoothmc.ui.adapter;
 
-
 public interface DeviceClickCallbacks {
+
     void onDeviceClick(String deviceName);
+
 }

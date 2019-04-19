@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Ahmed-Abdelmeged
+ * Copyright (c) 2019 Ahmed-Abdelmeged
  *
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
@@ -26,8 +26,6 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,13 +33,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ahmedabdelmeged.bluetoothmc.BluetoothMC;
 import com.ahmedabdelmeged.bluetoothmc.ui.BluetoothDevices;
 import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates;
 import com.ahmedabdelmeged.bluetoothmc.util.InputDataHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //set listener to keep track the communication errors
         bluetoothMC.setOnBluetoothErrorsListener(new BluetoothMC.BluetoothErrorsListener() {
             @Override
@@ -180,8 +179,6 @@ public class MainActivity extends AppCompatActivity {
                 showToast("Communication failed try again");
             }
         });
-
-
     }
 
     @Override
@@ -199,14 +196,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_disconnect:
-                //here disconnect to the bluetooth device
-                bluetoothMC.disconnect();
-                break;
+        if (item.getItemId() == R.id.item_disconnect) {
+            //here disconnect to the bluetooth device
+            bluetoothMC.disconnect();
         }
         return super.onOptionsItemSelected(item);
     }

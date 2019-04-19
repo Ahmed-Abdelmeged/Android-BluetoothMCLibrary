@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Ahmed-Abdelmeged
+ * Copyright (c) 2019 Ahmed-Abdelmeged
  *
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
@@ -21,26 +21,24 @@
 
 package com.ahmedabdelmeged.bluetoothmc.ui.adapter;
 
-
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedabdelmeged.bluetoothmc.R;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * custom array adapter to view the list of bluetooth devices
  */
 public class BluetoothDevicesAdapter extends RecyclerView.Adapter<BluetoothDevicesAdapter.BluetoothDeviceViewHolder> {
 
-    private List<String> devices = new ArrayList<>();
+    private List<String> devices;
 
     private DeviceClickCallbacks deviceClickCallbacks;
 
@@ -49,8 +47,9 @@ public class BluetoothDevicesAdapter extends RecyclerView.Adapter<BluetoothDevic
         this.deviceClickCallbacks = deviceClickCallbacks;
     }
 
+    @NonNull
     @Override
-    public BluetoothDevicesAdapter.BluetoothDeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BluetoothDevicesAdapter.BluetoothDeviceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device, parent, false);
         return new BluetoothDeviceViewHolder(view);
     }
@@ -61,7 +60,7 @@ public class BluetoothDevicesAdapter extends RecyclerView.Adapter<BluetoothDevic
     }
 
     @Override
-    public void onBindViewHolder(BluetoothDevicesAdapter.BluetoothDeviceViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BluetoothDevicesAdapter.BluetoothDeviceViewHolder holder, int position) {
         //set the device name
         String currentDevice = devices.get(position);
         if (currentDevice != null) {
@@ -72,7 +71,6 @@ public class BluetoothDevicesAdapter extends RecyclerView.Adapter<BluetoothDevic
     }
 
     class BluetoothDeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         private TextView deviceName;
 
         BluetoothDeviceViewHolder(View itemView) {

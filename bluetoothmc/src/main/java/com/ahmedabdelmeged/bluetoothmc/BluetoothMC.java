@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Ahmed-Abdelmeged
+ * Copyright (c) 2019 Ahmed-Abdelmeged
  *
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
@@ -21,7 +21,6 @@
 
 package com.ahmedabdelmeged.bluetoothmc;
 
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -36,7 +35,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-
 public class BluetoothMC {
 
     /**
@@ -49,7 +47,7 @@ public class BluetoothMC {
      */
     private static final String LOG_TAG = BluetoothMC.class.getSimpleName();
 
-    private BluetoothAdapter myBluetoothAdapter = null;
+    private BluetoothAdapter myBluetoothAdapter;
     private BluetoothSocket btSocket = null;
     private boolean isBtConnected = false;
     //SPP UUID. Look for it'
@@ -69,10 +67,25 @@ public class BluetoothMC {
     private BluetoothConnectionListener mBluetoothConnectionListener;
     private BluetoothErrorsListener mBluetoothErrorsListener;
 
+    private int bufferSize = 1024;
+
     /**
      * Required public constructor
      */
     public BluetoothMC() {
+        init();
+    }
+
+    public BluetoothMC(int bufferSize) {
+        if (bufferSize == 0) {
+            throw new IllegalStateException("Buffer size can't be zero");
+        }
+
+        this.bufferSize = bufferSize;
+        init();
+    }
+
+    private void init() {
         newConnectionFlag++;
 
         //get the mobile bluetooth device
@@ -317,7 +330,7 @@ public class BluetoothMC {
         }
 
         public void run() {
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[bufferSize];
             int bytes;
 
             //keep looping for listen for received message
@@ -359,4 +372,5 @@ public class BluetoothMC {
             mConnectedThread.write(data);
         }
     }
+
 }

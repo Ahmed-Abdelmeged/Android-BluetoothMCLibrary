@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Ahmed-Abdelmeged
+ * Copyright (c) 2019 Ahmed-Abdelmeged
  *
  * github: https://github.com/Ahmed-Abdelmeged
  * email: ahmed.abdelmeged.vm@gamil.com
@@ -21,15 +21,12 @@
 
 package com.ahmedabdelmeged.bluetoothmc.util;
 
-
 import java.util.ArrayList;
-
 
 public final class InputDataHelper {
 
     private ArrayList<String> sensorsValues;
     private StringBuilder readDataString;
-
 
     /**
      * Tag for the log (Debugging)
@@ -80,6 +77,8 @@ public final class InputDataHelper {
             readDataString.delete(0, readDataString.length());
 
         }
+
         return sensorsValues;
     }
+
 }

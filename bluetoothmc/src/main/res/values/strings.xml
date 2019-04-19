@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">BluetoothMC</string>
     <!-- Connect Devices Activity -->
     <string name="text_view_paired_devices">Paired Devices</string>
