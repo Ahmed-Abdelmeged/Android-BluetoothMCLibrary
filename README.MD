@@ -21,7 +21,7 @@ This library can use in many different applications like ,IOT ,RC car, Prosthese
 Gradle
 
 ```
-compile 'com.ahmedabdelmeged:bluetoothmc:1.0.2'
+implementation 'com.ahmedabdelmeged:bluetoothmc:1.1.0'
 ```
 
 ## Getting started
