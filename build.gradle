@@ -23,3 +23,17 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext.versions = [
+        //Jetpack
+        appcompat: '1.0.2',
+        lifecycle: '2.0.0',
+        material : '1.0.0',
+
+        //Testing
+        junit    : '4.12',
+
+        //Android Testing
+        runner   : '1.1.1',
+        espresso : '3.1.1'
+]
