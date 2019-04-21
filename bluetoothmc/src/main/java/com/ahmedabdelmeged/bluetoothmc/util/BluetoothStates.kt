@@ -19,30 +19,30 @@
  * limitations under the License.
  */
 
-package com.ahmedabdelmeged.bluetoothmc.util;
+package com.ahmedabdelmeged.bluetoothmc.util
 
-public final class BluetoothStates {
+object BluetoothStates {
 
     //Intent request code
-    public static final int REQUEST_CONNECT_DEVICE = 2653;
-    public static final int REQUEST_ENABLE_BT = 3569;
+    const val REQUEST_CONNECT_DEVICE = 2653
+    const val REQUEST_ENABLE_BT = 3569
 
     //Messages type send to the bluetooth handler
-    public static final int BLUETOOTH_CONNECTING = 20;
-    public static final int BLUETOOTH_CONNECTED = 21;
-    public static final int BLUETOOTH_CONNECTION_FAILED = 22;
-    public static final int BLUETOOTH_CONNECTION_LOST = 23;
-    public static final int BLUETOOTH_LISTENING = 101;
+    const val BLUETOOTH_CONNECTING = 20
+    const val BLUETOOTH_CONNECTED = 21
+    const val BLUETOOTH_CONNECTION_FAILED = 22
+    const val BLUETOOTH_CONNECTION_LOST = 23
+    const val BLUETOOTH_LISTENING = 101
 
     //Messages errors send to the bluetooth handler
-    public static final int ERROR_SEND = 600;
-    public static final int ERROR_LISTEN = 601;
-    public static final int ERROR_DISCONNECT = 602;
-    public static final int ERROR_COMMUNICATION = 603;
+    const val ERROR_SEND = 600
+    const val ERROR_LISTEN = 601
+    const val ERROR_DISCONNECT = 602
+    const val ERROR_COMMUNICATION = 603
 
     /**
      * Return Intent extra (The device MAC address)
      */
-    public static String EXTRA_DEVICE_ADDRESS = "device_address";
+    var EXTRA_DEVICE_ADDRESS = "device_address"
 
 }

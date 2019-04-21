@@ -68,14 +68,14 @@ class MainActivity : AppCompatActivity() {
         inputDataHelper = InputDataHelper()
 
         //check if the mobile have a bluetooth
-        if (!bluetoothMC.isBluetoothAvailable) {
+        if (!bluetoothMC.isBluetoothAvailable()) {
             finish()
-        } else if (!bluetoothMC.isBluetoothEnabled) {
+        } else if (!bluetoothMC.isBluetoothEnabled()) {
             bluetoothMC.enableBluetooth()
         }//check if the bluetooth enable or not and enable it if not
 
         //you can retrieve the current bluetooth adapter to customize it as you want
-        val bluetoothAdapter = bluetoothMC.bluetoothAdapter
+        val bluetoothAdapter = bluetoothMC.getBluetoothAdapter()
 
         fabConnect!!.setOnClickListener {
             val intent = Intent(this@MainActivity, BluetoothDevices::class.java)
@@ -89,16 +89,18 @@ class MainActivity : AppCompatActivity() {
         offButton!!.setOnClickListener { bluetoothMC.send("f") }
 
         //set listener for listen for the incoming data from the microcontroller
-        bluetoothMC.setOnDataReceivedListener { data ->
-            sensors = inputDataHelper.setSensorsValues(data)
+        bluetoothMC.setOnDataReceivedListener(object : BluetoothMC.onDataReceivedListener {
+            override fun onDataReceived(data: String) {
+                sensors = inputDataHelper.setSensorsValues(data)
 
-            if (sensors.size >= 4  /*this number despond on number of sensors you put*/) {
-                tempTextView!!.text = "Temp: " + sensors[0]
-                ldrTextView!!.text = "LDR: " + sensors[1]
-                potTextView!!.text = "POT: " + sensors[2]
-                buttonTextView!!.text = "Button: " + sensors[3]
+                if (sensors.size >= 4  /*this number despond on number of sensors you put*/) {
+                    tempTextView!!.text = "Temp: " + sensors[0]
+                    ldrTextView!!.text = "LDR: " + sensors[1]
+                    potTextView!!.text = "POT: " + sensors[2]
+                    buttonTextView!!.text = "Button: " + sensors[3]
+                }
             }
-        }
+        })
 
         //set listener to keep track for the connection states
         bluetoothMC.setOnBluetoothConnectionListener(object : BluetoothMC.BluetoothConnectionListener {
@@ -155,7 +157,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == BluetoothStates.REQUEST_CONNECT_DEVICE) {
             if (resultCode == Activity.RESULT_OK) {
-                bluetoothMC.connect(data)
+                bluetoothMC.connect(data!!)
             }
         }
     }

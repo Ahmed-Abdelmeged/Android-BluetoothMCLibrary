@@ -19,10 +19,10 @@
  * limitations under the License.
  */
 
-package com.ahmedabdelmeged.bluetoothmc.ui.adapter;
+package com.ahmedabdelmeged.bluetoothmc.ui.adapter
 
-public interface DeviceClickCallbacks {
+interface DeviceClickCallbacks {
 
-    void onDeviceClick(String deviceName);
+    fun onDeviceClick(deviceName: String)
 
 }
