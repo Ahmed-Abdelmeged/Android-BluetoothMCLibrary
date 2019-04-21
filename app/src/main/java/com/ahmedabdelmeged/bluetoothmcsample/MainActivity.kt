@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-package app.mego.android_bluetoothmclibrary
+package com.ahmedabdelmeged.bluetoothmcsample
 
 import android.app.Activity
 import android.app.ProgressDialog

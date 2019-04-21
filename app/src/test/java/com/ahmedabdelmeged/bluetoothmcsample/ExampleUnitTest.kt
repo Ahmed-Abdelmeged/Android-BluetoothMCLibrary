@@ -1,4 +1,4 @@
-package app.mego.android_bluetoothmclibrary
+package com.ahmedabdelmeged.bluetoothmcsample
 
 import org.junit.Test
 import org.junit.Assert.*

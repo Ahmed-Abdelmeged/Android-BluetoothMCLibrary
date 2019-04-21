@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "app.mego.android_bluetoothmclibrary"
+        applicationId "com.ahmedabdelmeged.bluetoothmcsample"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 3

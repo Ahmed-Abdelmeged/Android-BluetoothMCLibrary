@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context="app.mego.android_bluetoothmclibrary.MainActivity">
+    tools:context="com.ahmedabdelmeged.bluetoothmcsample.MainActivity">
 
     <Button
         android:id="@+id/on_button"

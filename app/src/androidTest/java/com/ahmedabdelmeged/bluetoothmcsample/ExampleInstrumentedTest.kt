@@ -1,4 +1,4 @@
-package app.mego.android_bluetoothmclibrary
+package com.ahmedabdelmeged.bluetoothmcsample
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -12,12 +12,12 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-
-        assertEquals("app.mego.android_bluetoothmclibrary", appContext.packageName)
+        assertEquals("com.ahmedabdelmeged.bluetoothmcsample", appContext.packageName)
     }
 
 }
