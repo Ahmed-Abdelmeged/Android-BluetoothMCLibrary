@@ -1,5 +1,9 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
 apply plugin: 'com.novoda.bintray-release'
 
 publish {
@@ -11,7 +15,6 @@ publish {
     desc = ''
     website = 'https://github.com/Ahmed-Abdelmeged/Android-BluetoothMCLibrary'
 }
-
 
 android {
     compileSdkVersion 28
@@ -33,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     implementation "androidx.appcompat:appcompat:1.0.2"
     implementation "com.google.android.material:material:1.0.0"
 
