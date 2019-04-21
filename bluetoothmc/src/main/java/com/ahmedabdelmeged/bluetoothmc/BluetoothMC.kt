@@ -11,6 +11,9 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
 
+/**
+ * @author Ahmed Abd-Elmeged
+ */
 class BluetoothMC(val bufferSize: Int = 1024) {
 
     /**
