@@ -5,4 +5,9 @@
     <string name="off">Off</string>
     <string name="disconnect">Disconnect</string>
 
+    <string name="sensor_temp">Temp %s</string>
+    <string name="sensor_ldr">LDR %s</string>
+    <string name="sensor_pot">POT %s</string>
+    <string name="sensor_button">Button %s</string>
+
 </resources>

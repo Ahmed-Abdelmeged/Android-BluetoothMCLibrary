@@ -290,11 +290,6 @@ class BluetoothMC(val bufferSize: Int = 1024) {
     }
 
     companion object {
-        /**
-         * Tag for the log (Debugging)
-         */
-        private val LOG_TAG = BluetoothMC::class.java.simpleName
-
         //SPP UUID. Look for it'
         //This the SPP for the arduino(AVR)
         private val myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")

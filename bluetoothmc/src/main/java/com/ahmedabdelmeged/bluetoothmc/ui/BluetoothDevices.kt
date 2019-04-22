@@ -12,7 +12,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -22,9 +21,9 @@ import com.ahmedabdelmeged.bluetoothmc.R
 import com.ahmedabdelmeged.bluetoothmc.ui.adapter.BluetoothDevicesAdapter
 import com.ahmedabdelmeged.bluetoothmc.ui.adapter.DeviceClickCallbacks
 import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.ArrayList
 import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates.REQUEST_ENABLE_BT
+import kotlinx.android.synthetic.main.activity_bluetooth_devices.*
 
 /**
  * This Activity to connect the app with the device(MicroController)
@@ -34,13 +33,6 @@ import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates.REQUEST_ENABLE_BT
  * @author Ahmed Abd-Elmeged
  */
 class BluetoothDevices : AppCompatActivity(), DeviceClickCallbacks {
-
-    /**
-     * UI Element
-     */
-    private var searchForNewDevices: FloatingActionButton? = null
-    private var deviceRecycler: RecyclerView? = null
-    private var searchProgressbar: ProgressBar? = null
 
     /**
      * The adapter to get all bluetooth services
@@ -74,8 +66,8 @@ class BluetoothDevices : AppCompatActivity(), DeviceClickCallbacks {
                 }
 
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED == action) {
-                searchForNewDevices!!.isEnabled = true
-                searchProgressbar!!.visibility = View.GONE
+                search_fab_button!!.isEnabled = true
+                search_progress_bar!!.visibility = View.GONE
                 if (pairedDevices!!.size == bluetoothDevicesAdapter!!.itemCount) {
                     Toast.makeText(this@BluetoothDevices, "No devices found", Toast.LENGTH_SHORT).show()
                 }
@@ -103,7 +95,6 @@ class BluetoothDevices : AppCompatActivity(), DeviceClickCallbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bluetooth_devices)
-        initializeScreen()
 
         //check if the device has a bluetooth or not
         //and show Toast message if it does't have
@@ -112,10 +103,10 @@ class BluetoothDevices : AppCompatActivity(), DeviceClickCallbacks {
         //set the bluetooth adapter
         val linearLayoutManager = LinearLayoutManager(
                 this, RecyclerView.VERTICAL, false)
-        deviceRecycler!!.layoutManager = linearLayoutManager
-        deviceRecycler!!.setHasFixedSize(true)
+        devices_recycler!!.layoutManager = linearLayoutManager
+        devices_recycler!!.setHasFixedSize(true)
         bluetoothDevicesAdapter = BluetoothDevicesAdapter(ArrayList(), this)
-        deviceRecycler!!.adapter = bluetoothDevicesAdapter
+        devices_recycler!!.adapter = bluetoothDevicesAdapter
 
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, R.string.does_not_have_bluetooth, Toast.LENGTH_LONG).show()
@@ -134,9 +125,9 @@ class BluetoothDevices : AppCompatActivity(), DeviceClickCallbacks {
 
 
         //press the button to start search new Devices
-        searchForNewDevices!!.setOnClickListener {
-            searchForNewDevices!!.isEnabled = false
-            searchProgressbar!!.visibility = View.VISIBLE
+        search_fab_button!!.setOnClickListener {
+            search_fab_button!!.isEnabled = false
+            search_progress_bar!!.visibility = View.VISIBLE
             bluetoothDevicesAdapter!!.clear()
             PairedDevicesList()
             NewDevicesList()
@@ -163,15 +154,6 @@ class BluetoothDevices : AppCompatActivity(), DeviceClickCallbacks {
                 finish()
             }
         }
-    }
-
-    /**
-     * Link the layout element from XML to Java
-     */
-    private fun initializeScreen() {
-        searchForNewDevices = findViewById(R.id.search_fab_button)
-        deviceRecycler = findViewById(R.id.devices_recycler)
-        searchProgressbar = findViewById(R.id.search_progress_bar)
     }
 
     /**
@@ -248,11 +230,6 @@ class BluetoothDevices : AppCompatActivity(), DeviceClickCallbacks {
     }
 
     companion object {
-        /**
-         * Tag for the log (Debugging)
-         */
-        private val LOG_TAG = BluetoothDevices::class.java.simpleName
-
         /**
          * request to enable bluetooth form activity result
          */

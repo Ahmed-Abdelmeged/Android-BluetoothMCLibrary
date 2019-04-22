@@ -6,15 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ahmedabdelmeged.bluetoothmc.BluetoothMC
 import com.ahmedabdelmeged.bluetoothmc.ui.BluetoothDevices
 import com.ahmedabdelmeged.bluetoothmc.util.BluetoothStates
 import com.ahmedabdelmeged.bluetoothmc.util.InputDataHelper
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * @author Ahmed Abd-Elmeged
@@ -24,26 +22,18 @@ class MainActivity : AppCompatActivity() {
     /**
      * Variables for bluetooth
      */
-    lateinit var bluetoothMC: BluetoothMC
-    lateinit var inputDataHelper: InputDataHelper
-    var sensors = listOf<String>()
+    private lateinit var bluetoothMC: BluetoothMC
+    private lateinit var inputDataHelper: InputDataHelper
+    private var sensors = listOf<String>()
 
     /**
      * UI Element
      */
-    private var potTextView: TextView? = null
-    private var ldrTextView: TextView? = null
-    private var buttonTextView: TextView? = null
-    private var tempTextView: TextView? = null
-    private var fabConnect: FloatingActionButton? = null
-    private var onButton: Button? = null
-    private var offButton: Button? = null
     private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initializeScreen()
 
         // initialize the bluetoothmc and the data helper
         bluetoothMC = BluetoothMC()
@@ -59,16 +49,16 @@ class MainActivity : AppCompatActivity() {
         //you can retrieve the current bluetooth adapter to customize it as you want
         val bluetoothAdapter = bluetoothMC.getBluetoothAdapter()
 
-        fabConnect!!.setOnClickListener {
+        fab_connect!!.setOnClickListener {
             val intent = Intent(this@MainActivity, BluetoothDevices::class.java)
             startActivityForResult(intent, BluetoothStates.REQUEST_CONNECT_DEVICE)
         }
 
         //send  a o command to the micro controller
-        onButton!!.setOnClickListener { bluetoothMC.send("o") }
+        on_button!!.setOnClickListener { bluetoothMC.send("o") }
 
         //send  a f command to the micro controller
-        offButton!!.setOnClickListener { bluetoothMC.send("f") }
+        off_button!!.setOnClickListener { bluetoothMC.send("f") }
 
         //set listener for listen for the incoming data from the microcontroller
         bluetoothMC.setOnDataReceivedListener(object : BluetoothMC.onDataReceivedListener {
@@ -76,10 +66,10 @@ class MainActivity : AppCompatActivity() {
                 sensors = inputDataHelper.setSensorsValues(data)
 
                 if (sensors.size >= 4  /*this number despond on number of sensors you put*/) {
-                    tempTextView!!.text = "Temp: " + sensors[0]
-                    ldrTextView!!.text = "LDR: " + sensors[1]
-                    potTextView!!.text = "POT: " + sensors[2]
-                    buttonTextView!!.text = "Button: " + sensors[3]
+                    sensor_temp!!.text = getString(R.string.sensor_temp, sensors[0])
+                    sensor_ldr!!.text = getString(R.string.sensor_ldr, sensors[1])
+                    sensor_pot!!.text = getString(R.string.sensor_pot, sensors[2])
+                    sensor_button!!.text = getString(R.string.sensor_button, sensors[3])
                 }
             }
         })
@@ -155,21 +145,6 @@ class MainActivity : AppCompatActivity() {
             bluetoothMC.disconnect()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    /**
-     * Link the layout element from XML to Java
-     */
-    private fun initializeScreen() {
-        potTextView = findViewById(R.id.sensor_pot)
-        ldrTextView = findViewById(R.id.sensor_ldr)
-        buttonTextView = findViewById(R.id.sensor_button)
-        tempTextView = findViewById(R.id.sensor_temp)
-
-        fabConnect = findViewById(R.id.fab_connect)
-
-        onButton = findViewById(R.id.on_button)
-        offButton = findViewById(R.id.off_button)
     }
 
     /**

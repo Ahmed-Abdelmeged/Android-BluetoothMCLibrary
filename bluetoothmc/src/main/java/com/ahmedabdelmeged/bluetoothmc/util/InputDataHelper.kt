@@ -48,11 +48,4 @@ class InputDataHelper {
         return sensorsValues
     }
 
-    companion object {
-        /**
-         * Tag for the log (Debugging)
-         */
-        private val LOG_TAG = InputDataHelper::class.java.simpleName
-    }
-
 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ahmedabdelmeged.bluetoothmc.R
+import kotlinx.android.synthetic.main.item_device.view.*
 
 /**
  * custom array adapter to view the list of bluetooth devices
@@ -31,7 +32,7 @@ class BluetoothDevicesAdapter(private val devices: MutableList<String>, private 
     }
 
     inner class BluetoothDeviceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        val deviceName: TextView = itemView.findViewById(R.id.device_name_textView)
+        val deviceName: TextView = itemView.device_name_textView
 
         init {
             itemView.setOnClickListener(this)
